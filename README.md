@@ -23,12 +23,14 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 
 
 
+
 ## Project Structure
 
 - `code/simple_agent.py`: Basic agent implementation using Azure OpenAI.
 - `code/simple_agent_with_tools.py`: Agent implementation with tool integration (e.g., weather lookup).
 - `code/simple_agent_with_tools_stream.py`: Agent implementation demonstrating streaming responses and function call handling.
 - `code/simple_agent_HIL.py`: Human-in-the-Loop (HIL) agent implementation, requiring user approval for certain actions.
+- `code/agent_with_tool_structured_response.py`: Agent implementation that demonstrates structured (Pydantic model) responses from the LLM.
 - `pyproject.toml`: Project configuration and dependencies.
 - `README.md`: This document.
 
@@ -55,10 +57,18 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 	```bash
 	uv run python code/simple_agent_with_tools_stream.py
 	```
+
 6. To try the Human-in-the-Loop (HIL) agent:
 	```bash
 	uv run python code/simple_agent_HIL.py
 	```
+7. To try the agent with structured response (Pydantic model output):
+	```bash
+	uv run python code/agent_with_tool_structured_response.py
+	```
+## Structured LLM Responses
+
+The `agent_with_tool_structured_response.py` example demonstrates how to instruct the LLM to return structured data (using a Pydantic model) instead of plain text. This is useful for downstream automation, validation, and integration with other systems.
 ## What is Human-in-the-Loop (HIL)?
 
 Human-in-the-Loop (HIL) is a design pattern where certain actions performed by an AI agent require explicit approval or input from a human user before proceeding. This is useful for scenarios where oversight, safety, or compliance is important. In this project, the HIL agent demonstrates how to require user approval before executing a tool function.
