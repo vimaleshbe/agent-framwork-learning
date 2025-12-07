@@ -1,4 +1,9 @@
+
 # Microsoft Agent Framework Learning Journey
+
+## Author
+
+This project is maintained by Vimalesh Jeyavelmani.
 
 ## Overview
 
@@ -16,10 +21,12 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 - Document the process and share insights for others starting out.
 
 
+
 ## Project Structure
 
 - `code/simple_agent.py`: Basic agent implementation using Azure OpenAI.
 - `code/simple_agent_with_tools.py`: Agent implementation with tool integration (e.g., weather lookup).
+- `code/simple_agent_with_tools_stream.py`: Agent implementation demonstrating streaming responses and function call handling.
 - `pyproject.toml`: Project configuration and dependencies.
 - `README.md`: This document.
 
@@ -34,12 +41,18 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 	- `azure_version`
 3. Run a sample agent:
 	```bash
-	python code/simple_agent.py
+	uv run python code/simple_agent.py
 	```
+
 4. To try the agent with tool support (e.g., weather lookup):
 	```bash
-	python code/simple_agent_with_tools.py
+	uv run python code/simple_agent_with_tools.py
 	```
+5. To try the agent with streaming responses and function call handling:
+	```bash
+	uv run python code/simple_agent_with_tools_stream.py
+	```
+
 
 
 ## Key Learnings
@@ -49,6 +62,7 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 - Using environment variables for secure configuration.
 - Writing clean, maintainable Python code.
 - Integrating external tools/functions with agents for enhanced capabilities.
+- Streaming agent responses and handling function calls/results in real time.
 
 ## Next Steps
 
