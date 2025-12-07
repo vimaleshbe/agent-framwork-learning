@@ -33,6 +33,7 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 - `code/simple_agent_HIL.py`: Human-in-the-Loop (HIL) agent implementation, requiring user approval for certain actions.
 - `code/agent_with_tool_structured_response.py`: Agent implementation that demonstrates structured (Pydantic model) responses from the LLM.
 - `code/agent_workflow.py`: Multi-agent workflow example, chaining agents and visualizing the workflow.
+- `code/agent_mcp_workflow.py`: DuckDuckGo MCP web search agent example using Azure OpenAI and an MCP tool (DuckDuckGo via Docker).
 - `pyproject.toml`: Project configuration and dependencies.
 - `README.md`: This document.
 
@@ -73,6 +74,13 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 	```bash
 	uv run python code/agent_workflow.py
 	```
+
+9. To try the DuckDuckGo MCP web search agent example:
+	```bash
+	uv run python code/agent_mcp_workflow.py
+	```
+
+	This example demonstrates how to use an agent with Azure OpenAI and an MCP tool (DuckDuckGo web search via Docker) to answer queries. The agent streams the final result to the console.
 ## Agent Workflow Example
 
 The `agent_workflow.py` example demonstrates how to chain multiple agents together using a workflow. The output can be visualized as an SVG diagram in the `docs/` folder. This is useful for building more complex, multi-step AI solutions.
