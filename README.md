@@ -24,6 +24,7 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 
 
 
+
 ## Project Structure
 
 - `code/simple_agent.py`: Basic agent implementation using Azure OpenAI.
@@ -31,6 +32,7 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 - `code/simple_agent_with_tools_stream.py`: Agent implementation demonstrating streaming responses and function call handling.
 - `code/simple_agent_HIL.py`: Human-in-the-Loop (HIL) agent implementation, requiring user approval for certain actions.
 - `code/agent_with_tool_structured_response.py`: Agent implementation that demonstrates structured (Pydantic model) responses from the LLM.
+- `code/agent_workflow.py`: Multi-agent workflow example, chaining agents and visualizing the workflow.
 - `pyproject.toml`: Project configuration and dependencies.
 - `README.md`: This document.
 
@@ -62,10 +64,18 @@ Microsoft Agent Framework is a toolkit for building AI-powered agents that can i
 	```bash
 	uv run python code/simple_agent_HIL.py
 	```
+
 7. To try the agent with structured response (Pydantic model output):
 	```bash
 	uv run python code/agent_with_tool_structured_response.py
 	```
+8. To try the multi-agent workflow example:
+	```bash
+	uv run python code/agent_workflow.py
+	```
+## Agent Workflow Example
+
+The `agent_workflow.py` example demonstrates how to chain multiple agents together using a workflow. The output can be visualized as an SVG diagram in the `docs/` folder. This is useful for building more complex, multi-step AI solutions.
 ## Structured LLM Responses
 
 The `agent_with_tool_structured_response.py` example demonstrates how to instruct the LLM to return structured data (using a Pydantic model) instead of plain text. This is useful for downstream automation, validation, and integration with other systems.
