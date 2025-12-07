@@ -63,41 +63,7 @@ async def agent_mcp_duckduckgo():
             for content in contents:
                 if hasattr(content, "text"):
                     print(content.text, end="", flush=True)
-    endpoint = os.getenv("azure_endpoint")
-    api_key = os.getenv("azure_apikey")
-    deployment_name = os.getenv("azure_deployment")
-    api_version = os.getenv("azure_version")
 
-    if not all([endpoint, api_key, deployment_name, api_version]):
-        raise EnvironmentError("Missing one or more required Azure OpenAI environment variables.")
-
-    async with (
-        MCPStdioTool(
-            name="duckduckgo",
-            command="docker",
-            args=[
-                "run",
-                "-i",
-                "duckduckgo-mcp-server:latest"
-            ]
-        ) as ddg_tool,
-        ChatAgent(
-            chat_client=AzureOpenAIChatClient(
-                endpoint=endpoint,
-                deployment_name=deployment_name,
-                api_version=api_version,
-                api_key=api_key
-            ),
-            name="indian-stock-market-agent",
-            instructions="You are ISMA, an helpful stockmarket assistant that can answer questions by searching the web.",
-        ) as agent,
-    ):
-        query = "what is the stock price of itc ? in NSE use Google Finance"
-        async for event in agent.run_stream(query, tools=ddg_tool):
-            contents = getattr(event, 'contents', [])
-            for content in contents:
-                if hasattr(content, "text"):
-                    print(content.text, end="", flush=True)
 
 
 

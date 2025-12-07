@@ -1,5 +1,106 @@
 
-# Microsoft Agent Framework Learning Journey
+# Microsoft Agent Framework – Learning & Experiments
+
+## Overview
+
+This repository is a hands-on exploration of the Microsoft Agent Framework, focusing on building intelligent agents with Azure OpenAI, tool/MCP integration, and real-time streaming. The project demonstrates:
+
+- **Agent Workflow**: Chaining and orchestrating multiple agents for complex tasks.
+- **MCP (Model Context Protocol) Integration**: Extending agent capabilities with external tools (e.g., DuckDuckGo web search via Docker).
+- **Agent Streaming**: Handling and displaying streaming responses, including tool calls and results, in real time.
+
+---
+
+## Project Structure
+
+- `code/simple_agent.py`: Basic agent using Azure OpenAI.
+- `code/simple_agent_with_tools.py`: Agent with tool integration (e.g., weather lookup).
+- `code/simple_agent_with_tools_stream.py`: Agent with streaming and function call/result handling.
+- `code/simple_agent_HIL.py`: Human-in-the-Loop (HIL) agent requiring user approval for actions.
+- `code/agent_with_tool_structured_response.py`: Agent with structured (Pydantic model) LLM responses.
+- `code/agent_workflow.py`: Multi-agent workflow, chaining agents and visualizing the workflow.
+- `code/agent_mcp_workflow.py`: DuckDuckGo MCP web search agent using Azure OpenAI and MCP tool (via Docker), with streaming output.
+- `pyproject.toml`: Project configuration and dependencies.
+- `README.md`: This document.
+
+---
+
+## Quick Start
+
+1. **Set up Azure OpenAI** and obtain your endpoint, API key, deployment name, and version.
+2. **Set environment variables**:
+	 - `azure_endpoint`
+	 - `azure_apikey`
+	 - `azure_deployment`
+	 - `azure_version`
+3. **Run an agent example:**
+	 ```bash
+	 uv run python code/simple_agent.py
+	 ```
+
+---
+
+## Highlighted Examples
+
+### 1. Agent Workflow (`code/agent_workflow.py`)
+
+Demonstrates chaining multiple agents together using a workflow. Useful for building complex, multi-step AI solutions. Output can be visualized as an SVG diagram in the `docs/` folder.
+
+### 2. MCP Integration (`code/agent_mcp_workflow.py`)
+
+Shows how to extend agent capabilities with an external tool using MCP. The DuckDuckGo MCP tool runs via Docker, allowing the agent to perform real-time web searches. Example usage:
+
+```bash
+uv run python code/agent_mcp_workflow.py
+```
+
+### 3. Agent Streaming (`code/simple_agent_with_tools_stream.py`)
+
+Illustrates how to handle and display streaming responses from the agent, including function/tool calls and results, in real time. This is essential for interactive applications and monitoring agent reasoning step by step.
+
+---
+
+## How to Run Other Examples
+
+- **Agent with tool support (e.g., weather lookup):**
+	```bash
+	uv run python code/simple_agent_with_tools.py
+	```
+- **Agent with streaming and function call handling:**
+	```bash
+	uv run python code/simple_agent_with_tools_stream.py
+	```
+- **Human-in-the-Loop (HIL) agent:**
+	```bash
+	uv run python code/simple_agent_HIL.py
+	```
+- **Agent with structured response (Pydantic model output):**
+	```bash
+	uv run python code/agent_with_tool_structured_response.py
+	```
+- **Multi-agent workflow example:**
+	```bash
+	uv run python code/agent_workflow.py
+	```
+
+---
+
+## Key Learnings
+
+- How to authenticate and connect to Azure OpenAI.
+- Structuring agent instructions and responses.
+- Using environment variables for secure configuration.
+- Integrating external tools/MCP for enhanced agent capabilities.
+- Streaming agent responses and handling tool calls/results in real time.
+- Building and visualizing agent workflows.
+
+---
+
+## Next Steps
+
+- Experiment with more complex agent behaviors and tool integrations.
+- Integrate with other Azure services.
+- Share progress and tips on LinkedIn.
 
 ## Author
 
