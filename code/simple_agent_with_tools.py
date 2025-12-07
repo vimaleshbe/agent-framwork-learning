@@ -1,7 +1,9 @@
 
 import os
 import asyncio
-from agent_framework.azure import AzureOpenAIResponsesClient
+from agent_framework.azure import AzureOpenAIChatClient
+from typing import Annotated
+from pydantic import Field
 
 # =============================
 # Agent Configuration Constants
@@ -9,15 +11,23 @@ from agent_framework.azure import AzureOpenAIResponsesClient
 AGENT_NAME = "Indian-Agent"
 AGENT_INSTRUCTIONS = (
     "You are my Indian Agent, you know all about India. "
-    "You can answer questions and provide helpful information."
+    "You can answer questions and use tools to provide information."
 )
 
 
-
-
-async def simple_agent():
+def get_weather(location: Annotated[str, Field(description="The location to get weather for")]) -> str:
     """
-    Main function to run the agent and print the response to a sample query.
+    Tool function to get weather information for a given location.
+    In a real implementation, this would call a weather API.
+    """
+    # Placeholder response for demonstration
+    return f"The weather in {location} is rainy for the next 2 days."
+
+
+
+async def simple_agent_with_tools():
+    """
+    Main function to run the agent with tool support and print the response to a sample query.
     """
     # Load Azure OpenAI configuration from environment variables
     endpoint = os.getenv("azure_endpoint")
@@ -29,8 +39,8 @@ async def simple_agent():
     if not all([endpoint, api_key, deployment_name, api_version]):
         raise EnvironmentError("Missing one or more required Azure OpenAI environment variables.")
 
-    # Create the agent with specified name and instructions
-    agent = AzureOpenAIResponsesClient(
+    # Create the agent with specified name, instructions, and tool(s)
+    agent = AzureOpenAIChatClient(
         endpoint=endpoint,
         deployment_name=deployment_name,
         api_version=api_version,
@@ -38,13 +48,14 @@ async def simple_agent():
     ).create_agent(
         name=AGENT_NAME,
         instructions=AGENT_INSTRUCTIONS,
+        tools=get_weather
     )
 
     # Run a sample query and print the result
-    response = await agent.run("What is the capital of India?")
+    response = await agent.run("What is the weather in Chennai?")
     print(response)
 
 
 if __name__ == "__main__":
-    # Entry point: run the agent asynchronously
-    asyncio.run(simple_agent())
+    # Entry point: run the agent with tools asynchronously
+    asyncio.run(simple_agent_with_tools())
